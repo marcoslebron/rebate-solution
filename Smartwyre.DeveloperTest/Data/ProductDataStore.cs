@@ -6,7 +6,28 @@ public class ProductDataStore : IProductDataStore
 {
     public Product GetProduct(string productIdentifier)
     {
-        // Access database to retrieve account, code removed for brevity 
-        return new Product();
+        // Hardcoded test data standing in for a real database
+        return productIdentifier switch
+        {
+            "OIL-01" => new Product
+            {
+                Identifier = "OIL-01",
+                Price = 2.00m,
+                Uom = "litre",
+                SupportedIncentives = SupportedIncentiveType.FixedCashAmount
+                                    | SupportedIncentiveType.FixedRateRebate
+                                    | SupportedIncentiveType.AmountPerUom
+                                    | SupportedIncentiveType.VolumeBonus
+            },
+            "SEED-01" => new Product
+            {
+                Identifier = "SEED-01",
+                Price = 45.00m,
+                Uom = "kg",
+                SupportedIncentives = SupportedIncentiveType.FixedCashAmount
+                                    | SupportedIncentiveType.VolumeBonus
+            },
+            _ => null
+        };
     }
 }
